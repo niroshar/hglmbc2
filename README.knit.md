@@ -6,14 +6,7 @@ author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmai
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
+
 
 
 
@@ -40,7 +33,8 @@ install.packages("hglmbc2")
 
 or, you can install the development version of hglmbc2 using [devtools](https://devtools.r-lib.org/) with:
 
-```{r, echo=TRUE, warning=FALSE, comment=FALSE, message=FALSE}
+
+```r
 # devtools::install_github("niroshar/hglmbc2", force = TRUE)
 ```
 

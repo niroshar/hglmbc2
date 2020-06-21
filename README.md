@@ -14,6 +14,8 @@ status](https://travis-ci.com/niroshar/hglmbc2.svg?branch=master)](https://travi
 status](https://ci.appveyor.com/api/projects/status/github/niroshar/hglmbc2?branch=master&svg=true)](https://ci.appveyor.com/project/niroshar/hglmbc2)
 [![Codecov test
 coverage](https://codecov.io/gh/niroshar/hglmbc2/branch/master/graph/badge.svg)](https://codecov.io/gh/niroshar/hglmbc2?branch=master)
+[![R build
+status](https://github.com/niroshar/hglmbc2/workflows/R-CMD-check/badge.svg)](https://github.com/niroshar/hglmbc2/actions)
 <!-- badges: end -->
 
 The goal of `hglmbc2` is to make inferences in Small Area Estimation
