@@ -12,5 +12,5 @@
 #' csv = system.file("extdata", "csv_data.csv", package = "hglmbc2")
 #' csv_read(csv)
 csv_read <- function(path){
-  read.csv(path)
+  readr::read_csv(path)
 }

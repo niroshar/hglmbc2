@@ -21,11 +21,12 @@ status](https://github.com/niroshar/hglmbc2/workflows/R-CMD-check/badge.svg)](ht
 The goal of `hglmbc2` is to make inferences in Small Area Estimation
 based on Hierarchical (\(h-\))likelihood approach with bias correction.
 The model parameters are obtained through an iterative approximation
-based on Newton Raphson method. The bias correction approach enhances
-the accuracy of maximum hierarchical likelihood estimates (MHLEs). This
-R package can be used to obtain improved MHLEs for `fixed effects`,
-`random effects`, and `dispersion parameters` for exponential family
-distributions with random effect `u` being normally distributed.
+based on Newton Raphson method combined with bias correction of
+estimates. The bias correction approach enhances the accuracy of maximum
+hierarchical likelihood estimates (MHLEs). This R package can be used to
+obtain improved MHLEs for `fixed effects`, `random effects`, and
+`dispersion parameters` for exponential family distributions with random
+effect \(u\sim N(0, \sigma^2)\).
 
 ## Installation
 
