@@ -23,66 +23,6 @@ library(hglmbc2)
 
 
 
-### Introduction
-
-The `hglmbc2` package vignette illustrates a series of applicaitons that may be interest in Small Area Estimation (SAE) based on the calibrated $h-$likelihood approach. In SAE a random effect or the laetent variable $u_i$  described the between area estimation. The proposed calibrated hierarchical $h-$likelihood in SAE obtain SAE through hierarchical estimation of `fixed effects` and `random effects` with bias correction using Regression Calibration Methodd (RCM). This apparoach allows the conditional distribution of y given random effect$(u)$ from any exponential family distributions (GLM family) and the random effect $u \sim N(0,\sigma^2)$ [-@mcculloch2005generalized]. This approach is called the *calibrated $h-$ likelihood with bias correction*. This `hglmbc2` is mainly built to fit exponential family distributions (GLM family) via $h-$likelihood with $Bias-Correction$ in SAE. This package also can be applied to *Hierarchical Generalized Linear Models (HGLM)* where $y|u$ from the exponential family distribution and $u$ may also be from the  exponential family distribution, *without bias correction approach* [@lee1996hierarchical; @lee2006generalized]. The CPH with bias correction approach is described in detail in the PhD dissetation report, <a href=PhDDissertation.pdf>(See the article)</a>. The $h-$likelihood is the sum of conditional log likelihood of $y|u$ and the log likelihood of $u$,  
-
-$$
-h = \sum_{i=1}^m\sum_{j=1}^{n_i} \ell_{y_{ij}|u_i} + \sum_{i=1}^m \ell_{u_i},
-$$
-
-
-- The $h-$likelihood for the Binomial-Normal HGLM (Mixed Logit Model) can be written as
-
-$$
-h = \sum_{i=1}^m\sum_{j=1}^{n_i} (y_{ij}(x_{ij}^T\beta +u_i) - log(1+exp(x_{ij}^T\beta +u_i))) - \sum_{i=1}^m \frac{m}{2}log(\sigma^2) -\frac{1}{2\sigma^2}\sum_{i=1}^mu_i^2-\frac{m}{2}log(2\pi)   
-$$
-
-The estimated model parameters through the proposed method are called the maximum hierarchical likelihood estimators (MHLEs). Let $\tau=(\beta,u)$  be the unknown parameters. Given the variance parameter $\theta=(\theta_1,…,\theta_q )^T=\sigma^2$,  MHLE of $\hat \tau=(\hat \beta, \hat u)$ are obtained by solving the score function $\partial h/\partial \tau = 0$. When the solution does not have a closed form, the MHLE for $(\beta,u)$ are obtained using *Newton-Raphson* approximation through an iterative procedure using equation. Unlike in the standard linear mixed model, the model (1) does not have a closed-form for the joint log likelihood, hence it is very challenging to estimate BLUP or EBLUP of model parameters. In such situations, $h-$likelihood plays a major role in simplifying the parameter estimation procedure. Mostly, the MHLEs are often obtained via numerical approximation methods due to intractable integrals in the joint log-likelihood function.  
-
-The score function $\mathcal{S}$ and the hessian matrix J of the Newton Raphson iterative algorithm shown below, 
-
-
-$$
-\pmb{\mathcal{S}}=
-\left(\begin{array}{cc} 
-\frac{\partial h}{\partial \beta_r}\\
-\frac{\partial h}{\partial u_i}
-\end{array}\right)
-,
-\pmb{\mathcal{J}}=
-\left(\begin{array}{cc} 
--\frac{\partial^2 h}{\partial \beta_r \partial \beta_s} & - \frac{\partial^2 h}{\partial \beta_r \partial u_i}\\
--\frac{\partial^2 h}{\partial u_i \partial \beta_s} & - \frac{\partial^2 h}{\partial u_i \partial u_l}
-\end{array}\right)
-$$
-
-The estimated $\pmb{\mathcal{J}}$ is the asymptotic variance-covariance matrix of $\pmb{\hat \beta}$ and $\pmb{\hat u}$. The variance-covariance matrix for variance component $\pmb{\hat \theta}$ will be estimated by MHLE of $\pmb{\theta}$ using $h_A$ through an iterative procedure.
-
-
-
-#### Bias Correction of Random Effects
-
-we consider bias correction of random effects within the parameter estimation process to mitigate the biasness that could occur due to the use of current estimates of random effects $(\pmb{\hat u}^{(t)})$ to obtain estimations for variance parameter $\theta(\sigma^2)$. The MHLE of $(\pmb{\hat u})$ will lead to bias and inconsistent estimations of regression coefficients and parameters in the random effects, such as variance parameters. We apply the *Regression Calibration Method (RCM)* which corrects the biasness in the estimators introducing a correction factor to adjust the current estimators based on the variance of the previous and current estimators of $\pmb{u}$. Under RCM, the current estimate of $\pmb{u}, \hat{\pmb{u}}$ is replaced by the expectation of conditional expectation of $\pmb{u}|\hat{\pmb{u}}$. Given $\pmb{u} \sim N(0,\sigma^2)$,
-
-$$
-E[\pmb{u}|\hat{\pmb{u}}] = \pmb{\zeta}\hat{\pmb{u}}=\frac{\sigma^2}{\sigma^2+\pmb{\gamma}^2} \hat{\pmb{u}},
-$$
-
-$$
-E[exp(\pmb{u})|\hat{\pmb{u}}] = exp \biggl( \pmb{\zeta}\hat{\pmb{u}}+\frac{\sigma^2(1-\pmb{\zeta})}{2} \bigg), 
-$$
-
-where $\pmb{\zeta}=\sigma^2/(\sigma^2+\pmb{\gamma}^2)$ is the correction factor, and $\pmb{\gamma}=diag(\Sigma_{\hat{\pmb{u}}}),\Sigma_{\hat{\pmb{u}}}=(\pmb{\mathcal{J}}^{-1})_{22}$ is a vector of $m$ elements obatined from the variance-covariance matrix of $\hat{\pmb{u}}$.
-The dispersion parameters are obained after correcting to the current $\hat{\pmb{u}}$. The dispersion parameters will be estimated iteratively based on the adjusted $h-$likelihood function.
-
-
-
-
-### Proposed h-likelihood with bias correction in small area estimation
-
-
-
 The proposed `calibrated h-likelihood with bias correction' approach is currently limited to GLM family distributions where a response variable whose conditional distribution of $y|u$ belongs to exponential family and the random effect $u\sim N(0,\sigma^2)$. The algorithm consists of two main key components:
 
 1. A linear predictor: $\eta_i=\sum_{i=1}^n x_i\beta_i$,
