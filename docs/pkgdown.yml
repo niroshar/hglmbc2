@@ -1,0 +1,8 @@
+pandoc: 2.7.2
+pkgdown: 1.5.1
+pkgdown_sha: ~
+articles:
+  hglmbc2_Documentation: hglmbc2_Documentation.html
+  hglmbc2_vignette: hglmbc2_vignette.html
+last_built: 2020-06-21T14:59Z
+
