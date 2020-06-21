@@ -1,12 +1,10 @@
-h-likelihood with bias correction in SAE (hglmbc) vignette
+h-likelihood with bias correction in SAE (hglmbc2) vignette
 ================
 Nirosha Rathnayake, Dai (Daisy) Hongying
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# hglmbc <img src="man/figures/logoHGLMBC1.png" align="right" height="120" />
-
-# hglmbc2
+# hglmbc2 <img src="man/figures/logohglmbc2.png" align="right" height="120" />
 
 <!-- badges: start -->
 
@@ -29,14 +27,14 @@ You can install the released version of hglmbc from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("hglmbc")
+install.packages("hglmbc2")
 ```
 
 or, you can install the development version of hglmbc using
 [devtools](https://devtools.r-lib.org/) with:
 
 ``` r
-# devtools::install_github("niroshar/hglmbc", force = TRUE)
+# devtools::install_github("niroshar/hglmbc2", force = TRUE)
 ```
 
 #### Example 1

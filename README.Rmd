@@ -1,5 +1,5 @@
 ---
-title: h-likelihood with bias correction in SAE (hglmbc) vignette
+title: h-likelihood with bias correction in SAE (hglmbc2) vignette
 output: github_document
 author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmail.com, https://niroshar.github.io/My-Profile/], Dai (Daisy) Hongying^[University of Nebraska Medical Center, https://www.unmc.edu/publichealth//departments/biostatistics/facultyandstaff/hongying-dai.html]
 ---
@@ -17,9 +17,9 @@ knitr::opts_chunk$set(
 
 
 
-# hglmbc <img src="man/figures/logoHGLMBC1.png" align="right" height="120" />
+# hglmbc2 <img src="man/figures/logohglmbc2.png" align="right" height="120" />
 
-# hglmbc2
+
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.com/niroshar/hglmbc2.svg?branch=master)](https://travis-ci.com/niroshar/hglmbc2)
@@ -33,13 +33,13 @@ The goal of `hglmbc2` is to make inferences in Small Area Estimation based on Hi
 You can install the released version of hglmbc from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("hglmbc")
+install.packages("hglmbc2")
 ```
 
 or, you can install the development version of hglmbc using [devtools](https://devtools.r-lib.org/) with:
 
 ```{r, echo=TRUE, warning=FALSE, comment=FALSE, message=FALSE}
-# devtools::install_github("niroshar/hglmbc", force = TRUE)
+# devtools::install_github("niroshar/hglmbc2", force = TRUE)
 ```
 
 
