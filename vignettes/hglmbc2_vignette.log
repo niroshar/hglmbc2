@@ -1,12 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.6.19)  20 JUN 2020 20:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.6.19)  20 JUN 2020 22:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**C:/Users/Nirosha/AppData/Local/Temp/RtmpYXD4A8/preview-8e46aeb2a27.dir/hglmbc
-2_vignette.tex
-
-(c:/Users/Nirosha/AppData/Local/Temp/RtmpYXD4A8/preview-8e46aeb2a27.dir/hglmbc2
-_vignette.tex
+**C:/Nirosha/BIOS999_2020/packages/hglmbc2/vignettes/hglmbc2_vignette.tex
+(c:/Nirosha/BIOS999_2020/packages/hglmbc2/vignettes/hglmbc2_vignette.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-06-18>
 (c:/Users/Nirosha/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -850,12 +847,12 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 316.
  ) 
 Here is how much of TeX's memory you used:
  17938 strings out of 482419
- 294739 string characters out of 5946182
+ 294659 string characters out of 5946182
  932028 words of memory out of 5000000
  33455 multiletter control sequences out of 15000+600000
  586930 words of font info for 70 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,11n,45p,1017b,1632s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,45p,997b,1632s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/Nirosha/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec
 .enc}{c:/Users/Nirosha/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm
 -rm.enc}{c:/Users/Nirosha/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm
