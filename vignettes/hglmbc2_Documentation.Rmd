@@ -87,6 +87,7 @@ The dispersion parameters are obained after correcting to the current $\hat{\pmb
 
 ### MHLEs of dispersion parameters
 
+The adjusted $h-$likelihood 
 
 
 # References

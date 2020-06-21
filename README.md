@@ -11,8 +11,7 @@ status](https://travis-ci.com/niroshar/hglmbc2.svg?branch=master)](https://travi
 status](https://ci.appveyor.com/api/projects/status/github/niroshar/hglmbc2?branch=master&svg=true)](https://ci.appveyor.com/project/niroshar/hglmbc2)
 [![Codecov test
 coverage](https://codecov.io/gh/niroshar/hglmbc2/branch/master/graph/badge.svg)](https://codecov.io/gh/niroshar/hglmbc2?branch=master)
-[![R build
-status](https://github.com/niroshar/hglmbc2/workflows/R-CMD-check/badge.svg)](https://github.com/niroshar/hglmbc2/actions)
+[![R-CMD-check](https://github.com/niroshar/hglmbc2/workflows/R-CMD-check/badge.svg)](https://github.com/niroshar/hglmbc2/actions)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/hglmbc2)](https://CRAN.R-project.org/package=hglmbc2)
 <!-- badges: end -->
@@ -113,7 +112,7 @@ hglmbc.fit1$summary
 #> [1] 11
 #> 
 #> $` `
-#> [1] "Converged in 11 iterations with tol = 4.89528193359234e-06."
+#> [1] "Converged in 11 iterations with tol = 4.28683463615798e-06."
 #> 
 #> attr(,"class")
 #> [1] "summary.hglm.fit"
