@@ -46,4 +46,19 @@ or, you can install the development version of hglmbc2 using
 
 #### Example 1
 
-This is a basic example which shows you how to solve a common problem:
+`Binomial-Normal HGLM` is also known as the `mixed logit` model in GLM
+family with the binary response variable and the random effect
+\(u\sim N(0,\sigma^2)\).
+
+``` r
+library(hglmbc2)
+## basic example code
+data <- eversmoke
+mformula <- "smoke_ever ~ as.factor(age) + as.factor(gender) + as.factor(race) + as.factor(year) + povt_rate"
+dom <- "county"
+y.family <- "binomial"
+rand.family <- "gaussian"
+## Fit the model
+# hglmbc.fit <- hglmbc(data=eversmoke, mformula, dom = "county", y.family=binomial)
+# hglmbc.fit$summary
+```
