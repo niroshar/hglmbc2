@@ -1,15 +1,9 @@
 ---
-title: "Calibrated h-likelihood with bias correction in SAE (hglmbc) vignette"
+title: "Calibrated h-likelihood with bias correction in SAE (hglmbc2) vignette"
 author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmail.com, https://niroshar.github.io/My-Profile/], Dai (Daisy) Hongying^[University of Nebraska Medical Center, https://www.unmc.edu/publichealth//departments/biostatistics/facultyandstaff/hongying-dai.html]
-# output: rmarkdown::pdf_document
+# output: rmarkdown::html_document
 output:
-  pdf_document:
-    fig_caption: yes
-    toc: yes
-    toc_depth: 3
-    number_sections: true
-    citation_package: biblatex
-bibliography: refs.bib
+  html_document:
 vignette: >
   %\VignetteIndexEntry{hglmbc2_vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -30,7 +24,7 @@ library(hglmbc2)
 
 ### Introduction
 
-The `hglmbc` package vignette illustrates a series of applicaitons that may be interest in Small Area Estimation (SAE) based on the calibrated $h-$likelihood approach. In SAE a random effect or the laetent variable $u_i$  described the between area estimation. The proposed calibrated hierarchical $h-$likelihood in SAE obtain SAE through hierarchical estimation of `fixed effects` and `random effects` with bias correction using Regression Calibration Methodd (RCM). This apparoach allows the conditional distribution of y given random effect$(u)$ from any exponential family distributions (GLM family) and the random effect $u \sim N(0,\sigma^2)$ [-@mcculloch2005generalized]. This approach is called the *calibrated $h-$ likelihood with bias correction*. This `hglmbc` is mainly built to fit exponential family distributions (GLM family) via $h-$likelihood with $Bias-Correction$ in SAE. This package also can be applied to *Hierarchical Generalized Linear Models (HGLM)* where $y|u$ from the exponential family distribution and $u$ may also be from the  exponential family distribution, *without bias correction approach* [@lee1996hierarchical; @lee2006generalized]. The CPH with bias correction approach is described in detail in the PhD dissetation report, <a href=PhDDissertation.pdf>(See the article)</a>. The $h-$likelihood is the sum of conditional log likelihood of $y|u$ and the log likelihood of $u$,  
+The `hglmbc2` package vignette illustrates a series of applicaitons that may be interest in Small Area Estimation (SAE) based on the calibrated $h-$likelihood approach. In SAE a random effect or the laetent variable $u_i$  described the between area estimation. The proposed calibrated hierarchical $h-$likelihood in SAE obtain SAE through hierarchical estimation of `fixed effects` and `random effects` with bias correction using Regression Calibration Methodd (RCM). This apparoach allows the conditional distribution of y given random effect$(u)$ from any exponential family distributions (GLM family) and the random effect $u \sim N(0,\sigma^2)$ [-@mcculloch2005generalized]. This approach is called the *calibrated $h-$ likelihood with bias correction*. This `hglmbc2` is mainly built to fit exponential family distributions (GLM family) via $h-$likelihood with $Bias-Correction$ in SAE. This package also can be applied to *Hierarchical Generalized Linear Models (HGLM)* where $y|u$ from the exponential family distribution and $u$ may also be from the  exponential family distribution, *without bias correction approach* [@lee1996hierarchical; @lee2006generalized]. The CPH with bias correction approach is described in detail in the PhD dissetation report, <a href=PhDDissertation.pdf>(See the article)</a>. The $h-$likelihood is the sum of conditional log likelihood of $y|u$ and the log likelihood of $u$,  
 
 $$
 h = \sum_{i=1}^m\sum_{j=1}^{n_i} \ell_{y_{ij}|u_i} + \sum_{i=1}^m \ell_{u_i},
@@ -111,7 +105,7 @@ b.family
 
 
 ```{r hBino, echo=TRUE}
-library(hglmbc)
+library(hglmbc2)
 ## basic example code
 data <- eversmoke
 mformula <- "smoke_ever ~ as.factor(age) + as.factor(gender) + as.factor(race) + as.factor(year) + povt_rate"

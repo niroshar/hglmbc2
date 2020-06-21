@@ -27,14 +27,14 @@ distributions with random effect `u` being normally distributed.
 
 ## Installation
 
-You can install the released version of hglmbc from
+You can install the released version of hglmbc2 from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("hglmbc2")
 ```
 
-or, you can install the development version of hglmbc using
+or, you can install the development version of hglmbc2 using
 [devtools](https://devtools.r-lib.org/) with:
 
 ``` r
