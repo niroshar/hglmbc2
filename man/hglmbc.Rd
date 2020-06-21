@@ -31,12 +31,6 @@ or state code, and also name of the county or name of the state.}
 \item{tol}{predefined tolerance value. Default value is tol=1e-10.}
 
 \item{...}{other arguments, See details section.}
-
-\item{resp}{the response variable.}
-
-\item{fe.disc}{a vector of categorical variables.}
-
-\item{fe.cont}{a vector of numeric variables.}
 }
 \value{
 An object of class \code{hglmbc} consists of the hierarchical maximum likelihood estimates (HMLEs)

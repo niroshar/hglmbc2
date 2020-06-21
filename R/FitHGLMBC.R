@@ -11,9 +11,6 @@
 #' @param y.family a distribution from _exponential family_ to describe the error distribution. See
 #' \code{"\link[=family]{family}"}.
 #' @param rand.family a discription of the distribution of random effects.
-#' @param resp the response variable.
-#' @param fe.disc a vector of categorical variables.
-#' @param fe.cont a vector of numeric variables.
 #' @param tol predefined tolerance value. Default value is tol=1e-10.
 #' @param ... other arguments, See details section.
 #'
