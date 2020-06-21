@@ -23,7 +23,8 @@ Imports:
     tibble,
     stringi,
     Matrix,
-    stats
+    stats,
+    readr
 RoxygenNote: 7.1.0
 Suggests: 
     knitr,
@@ -34,3 +35,5 @@ Suggests:
 URL: https://github.com/niroshar/hglmbc2
 BugReports: https://github.com/niroshar/hglmbc2/issues
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)

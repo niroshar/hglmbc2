@@ -1,12 +1,14 @@
 ---
 title: "hglmbc2 Documentation"
+author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmail.com, https://niroshar.github.io/My-Profile/], Dai (Daisy) Hongying^[University of Nebraska Medical Center, https://www.unmc.edu/publichealth//departments/biostatistics/facultyandstaff/hongying-dai.html]
+# output: rmarkdown::html_document
 output:
-  bookdown::pdf_document2
-bibliography: refs.bib
+  html_document:
 vignette: >
-  %\VignetteIndexEntry{hglmbc2_Documentation}
+  %\VignetteIndexEntry{hglmbc2 Documentation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+
 ---
 
 ```{r, include = FALSE}
