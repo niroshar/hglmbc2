@@ -1,5 +1,5 @@
 ---
-title: "Calibrated h-likelihood with bias correction in SAE (hglmbc2) vignette"
+title: "hglmbc2 Documentation"
 output:
   bookdown::pdf_document2
 vignette: >
@@ -14,3 +14,4 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
