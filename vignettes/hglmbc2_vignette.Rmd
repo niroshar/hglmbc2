@@ -1,0 +1,20 @@
+---
+title: "Calibrated h-likelihood with bias correction in SAE (hglmbc) vignette"
+author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmail.com, https://niroshar.github.io/My-Profile/], Dai (Daisy) Hongying^[University of Nebraska Medical Center, https://www.unmc.edu/publichealth//departments/biostatistics/facultyandstaff/hongying-dai.html]
+output: rmarkdown::pdf_document
+vignette: >
+  %\VignetteIndexEntry{hglmbc2_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(hglmbc2)
+```
