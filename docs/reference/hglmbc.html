@@ -138,13 +138,10 @@ family distributions with normally distributed random effects.</p>
 
     <pre class="usage"><span class='fu'>hglmbc</span>(
   <span class='no'>data</span>,
-  <span class='no'>mformula</span>,
+  <span class='kw'>mformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>dom</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y.family</span> <span class='kw'>=</span> <span class='no'>binomial</span>,
-  <span class='kw'>rand.family</span> <span class='kw'>=</span> <span class='no'>gaussian</span>,
-  <span class='kw'>resp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fe.disc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fe.cont</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>y.family</span> <span class='kw'>=</span> <span class='st'>"binomial"</span>,
+  <span class='kw'>rand.family</span> <span class='kw'>=</span> <span class='st'>"gaussian"</span>,
   <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>,
   <span class='no'>...</span>
 )</pre>
@@ -176,6 +173,14 @@ or state code, and also name of the county or name of the state.</p></td>
       <td><p>a discription of the distribution of random effects.</p></td>
     </tr>
     <tr>
+      <th>tol</th>
+      <td><p>predefined tolerance value. Default value is tol=1e-10.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other arguments, See details section.</p></td>
+    </tr>
+    <tr>
       <th>resp</th>
       <td><p>the response variable.</p></td>
     </tr>
@@ -186,14 +191,6 @@ or state code, and also name of the county or name of the state.</p></td>
     <tr>
       <th>fe.cont</th>
       <td><p>a vector of numeric variables.</p></td>
-    </tr>
-    <tr>
-      <th>tol</th>
-      <td><p>predefined tolerance value. Default value is tol=1e-10.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>other arguments, See details section.</p></td>
     </tr>
     </table>
 
@@ -240,7 +237,7 @@ age (groups: 1, 2, 3), if the prefered reference group is 2, then set <code>ref.
 <span class='no'>dom</span> <span class='kw'>&lt;-</span> <span class='st'>"county"</span>
 <span class='no'>y.family</span> <span class='kw'>&lt;-</span> <span class='st'>"binomial"</span>
 <span class='no'>rand.family</span> <span class='kw'>&lt;-</span> <span class='st'>"gaussian"</span>
-<span class='no'>hglmbc.fit</span> <span class='kw'>&lt;-</span> <span class='fu'>hglmbc</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>eversmoke</span>, <span class='no'>mformula</span>, <span class='kw'>dom</span> <span class='kw'>=</span> <span class='st'>"county"</span>, <span class='kw'>y.family</span><span class='kw'>=</span><span class='no'>binomial</span>)
+<span class='no'>hglmbc.fit</span> <span class='kw'>&lt;-</span> <span class='fu'>hglmbc</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>eversmoke</span>, <span class='no'>mformula</span>, <span class='kw'>dom</span> <span class='kw'>=</span> <span class='st'>"county"</span>, <span class='kw'>y.family</span><span class='kw'>=</span><span class='st'>"binomial"</span>)
 
 <span class='co'># mformula is not defined,</span>
 <span class='no'>resp</span> <span class='kw'>&lt;-</span> <span class='st'>"smoke_ever"</span>
@@ -249,7 +246,7 @@ age (groups: 1, 2, 3), if the prefered reference group is 2, then set <code>ref.
 <span class='no'>contX</span> <span class='kw'>&lt;-</span> <span class='st'>"povt_rate"</span>
 
 <span class='no'>hglmbc.fit</span> <span class='kw'>&lt;-</span> <span class='fu'>hglmbc</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>eversmoke</span>, <span class='no'>resp</span>, <span class='kw'>dom</span> <span class='kw'>=</span> <span class='st'>"county"</span>,<span class='kw'>fe.disc</span> <span class='kw'>=</span> <span class='no'>catX</span>,
-<span class='kw'>fe.cont</span> <span class='kw'>=</span> <span class='no'>contX</span>, <span class='kw'>family</span> <span class='kw'>=</span> <span class='no'>binomial</span>)
+<span class='kw'>fe.cont</span> <span class='kw'>=</span> <span class='no'>contX</span>, <span class='kw'>y.family</span> <span class='kw'>=</span> <span class='st'>"binomial"</span>)
 
 
 <span class='co'># Poisson-Normal HGLM</span>

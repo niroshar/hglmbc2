@@ -83,20 +83,13 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-<div id="h-likelihood-with-bias-correction-in-sae-hglmbc2-vignette" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#h-likelihood-with-bias-correction-in-sae-hglmbc2-vignette" class="anchor"></a>h-likelihood with bias correction in SAE (hglmbc2) vignette</h1></div>
-<p>Nirosha Rathnayake, Dai (Daisy) Hongying</p>
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-</div>
 <div id="hglmbc2-" class="section level1">
-<h1 class="hasAnchor">
+<div class="page-header"><h1 class="hasAnchor">
 <a href="#hglmbc2-" class="anchor"></a>hglmbc2 <img src="reference/figures/logohglmbc2.png" align="right" height="120">
-</h1>
+</h1></div>
 <!-- badges: start -->
-<p><a href="https://travis-ci.com/niroshar/hglmbc2"><img src="https://travis-ci.com/niroshar/hglmbc2.svg?branch=master" alt="Travis build status"></a> <a href="https://ci.appveyor.com/project/niroshar/hglmbc2"><img src="https://ci.appveyor.com/api/projects/status/github/niroshar/hglmbc2?branch=master&amp;svg=true" alt="AppVeyor build status"></a> <a href="https://codecov.io/gh/niroshar/hglmbc2?branch=master"><img src="https://codecov.io/gh/niroshar/hglmbc2/branch/master/graph/badge.svg" alt="Codecov test coverage"></a> <a href="https://github.com/niroshar/hglmbc2/actions"><img src="https://github.com/niroshar/hglmbc2/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <!-- badges: end --></p>
-<p>The goal of <code>hglmbc2</code> is to make inferences in Small Area Estimation based on Hierarchical (<span class="math inline"><em>h</em>−</span>)likelihood approach with bias correction. The model parameters are obtained through an iterative approximation based on Newton Raphson method combined with bias correction of estimates. The bias correction approach enhances the accuracy of maximum hierarchical likelihood estimates (MHLEs). This R package can be used to obtain improved MHLEs for <code>fixed effects</code>, <code>random effects</code>, and <code>dispersion parameters</code> for exponential family distributions with random effect <span class="math inline"><em>u</em> ∼ <em>N</em>(0, <em>σ</em><sup>2</sup>)</span>.</p>
+
+<p>The goal of <code>hglmbc2</code> is to make inferences in Small Area Estimation based on Hierarchical <span class="math inline">(<em>h</em> − )</span>likelihood approach with bias correction. The model parameters are obtained through an iterative approximation based on Newton Raphson method combined with bias correction of estimates. The bias correction approach enhances the accuracy of maximum hierarchical likelihood estimates (MHLEs). This R package can be used to obtain improved MHLEs for <code>fixed effects</code>, <code>random effects</code>, and <code>dispersion parameters</code> for exponential family distributions with random effect <span class="math inline"><em>u</em> ∼ <em>N</em>(0, <em>σ</em><sup>2</sup>)</span>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -104,24 +97,93 @@
 <div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"hglmbc2"</span>)</pre></div>
 <p>or, you can install the development version of hglmbc2 using <a href="https://devtools.r-lib.org/">devtools</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="r"># devtools::install_github("niroshar/hglmbc2", force = TRUE)</pre></div>
-<div id="example-1" class="section level4">
+<div id="example-method-1" class="section level4">
 <h4 class="hasAnchor">
-<a href="#example-1" class="anchor"></a>Example 1</h4>
+<a href="#example-method-1" class="anchor"></a>Example: method 1</h4>
 <p><code>Binomial-Normal HGLM</code> is also known as the <code>mixed logit</code> model in GLM family with the binary response variable and the random effect <span class="math inline"><em>u</em> ∼ <em>N</em>(0, <em>σ</em><sup>2</sup>)</span>.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">hglmbc2</span>)
-<span class="co">## basic example code</span>
+
+<span class="co"># basic example code</span>
 <span class="no">data</span> <span class="kw">&lt;-</span> <span class="no">eversmoke</span>
 <span class="no">mformula</span> <span class="kw">&lt;-</span> <span class="st">"smoke_ever ~ as.factor(age) + as.factor(gender) + as.factor(race) + as.factor(year) + povt_rate"</span>
 <span class="no">dom</span> <span class="kw">&lt;-</span> <span class="st">"county"</span>
 <span class="no">y.family</span> <span class="kw">&lt;-</span> <span class="st">"binomial"</span>
 <span class="no">rand.family</span> <span class="kw">&lt;-</span> <span class="st">"gaussian"</span>
-<span class="co">## Fit the model</span>
-<span class="co"># hglmbc.fit &lt;- hglmbc(data=eversmoke, mformula, dom = "county", y.family=binomial)</span>
-<span class="co"># hglmbc.fit$summary</span></pre></div>
-</div>
-</div>
-</div>
 
+<span class="co"># Fit the model</span>
+<span class="no">hglmbc.fit</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/hglmbc.html">hglmbc</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">eversmoke</span>, <span class="no">mformula</span>, <span class="kw">dom</span> <span class="kw">=</span> <span class="st">"county"</span>, <span class="kw">y.family</span> <span class="kw">=</span> <span class="st">"binomial"</span>)
+<span class="co">#&gt; Fixed effects and random effects are not defined, selected by variable type !!!!</span>
+
+<span class="co">## MHLEs of fixed effects</span>
+<span class="no">hglmbc.fit</span>$<span class="no">est.fe</span>
+<span class="co">#&gt;           Estimate Std.Error   Z Value P(&gt;|Z|)</span>
+<span class="co">#&gt; Intercept -1.77212   0.15260 -11.61284 0.00000</span>
+<span class="co">#&gt; age2       0.47708   0.05213   9.15174 0.00000</span>
+<span class="co">#&gt; age3       1.00272   0.06069  16.52200 0.00000</span>
+<span class="co">#&gt; gender2    0.13512   0.02828   4.77793 0.00000</span>
+<span class="co">#&gt; povtrate   3.80385   0.86778   4.38343 0.00001</span>
+<span class="co">#&gt; race2     -0.47891   0.05268  -9.09093 0.00000</span>
+<span class="co">#&gt; race3      0.04269   0.03866   1.10424 0.26949</span>
+<span class="co">#&gt; race4     -0.17499   0.04980  -3.51386 0.00044</span>
+<span class="co">#&gt; year2     -0.32813   0.05561  -5.90056 0.00000</span>
+
+
+<span class="co"># The distribution of y|u not defined,</span>
+<span class="no">hglmbc.fit1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/hglmbc.html">hglmbc</a></span>(<span class="kw">data</span> <span class="kw">=</span> <span class="no">eversmoke</span>, <span class="no">mformula</span>, <span class="kw">dom</span> <span class="kw">=</span> <span class="st">"county"</span>)
+<span class="co">#&gt; Fixed effects and random effects are not defined, selected by variable type !!!!</span>
+
+<span class="co"># Model fit summary</span>
+<span class="no">hglmbc.fit1</span>$<span class="no">summary</span>
+<span class="co">#&gt; $`Model formula`</span>
+<span class="co">#&gt; [1] "smoke_ever ~ as.factor(age) + as.factor(gender) + as.factor(race) + as.factor(year) + povt_rate"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $`random effect`</span>
+<span class="co">#&gt; [1] "county"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $`fixed effects estimates`</span>
+<span class="co">#&gt;           Estimate Std.Error   Z Value P(&gt;|Z|)</span>
+<span class="co">#&gt; Intercept -1.77212   0.15260 -11.61284 0.00000</span>
+<span class="co">#&gt; age2       0.47708   0.05213   9.15174 0.00000</span>
+<span class="co">#&gt; age3       1.00272   0.06069  16.52200 0.00000</span>
+<span class="co">#&gt; gender2    0.13512   0.02828   4.77793 0.00000</span>
+<span class="co">#&gt; povtrate   3.80385   0.86778   4.38343 0.00001</span>
+<span class="co">#&gt; race2     -0.47891   0.05268  -9.09093 0.00000</span>
+<span class="co">#&gt; race3      0.04269   0.03866   1.10424 0.26949</span>
+<span class="co">#&gt; race4     -0.17499   0.04980  -3.51386 0.00044</span>
+<span class="co">#&gt; year2     -0.32813   0.05561  -5.90056 0.00000</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $`dispersion paramerer`</span>
+<span class="co">#&gt;         [,1]</span>
+<span class="co">#&gt; [1,] 0.20757</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $`hglm model inference`</span>
+<span class="co">#&gt;        AIC      BIC      hLik</span>
+<span class="co">#&gt; 1 29221.83 29303.13 -14600.91</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $iter</span>
+<span class="co">#&gt; [1] 11</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $` `</span>
+<span class="co">#&gt; [1] "Converged in 11 iterations with tol = 5.01376296657696e-06."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; attr(,"class")</span>
+<span class="co">#&gt; [1] "summary.hglm.fit"</span></pre></div>
+</div>
+<div id="example-method-2" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-method-2" class="anchor"></a>Example: method 2</h4>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># mformula is not defined,</span>
+<span class="no">data</span> <span class="kw">&lt;-</span> <span class="no">eversmoke</span>
+<span class="no">resp</span> <span class="kw">&lt;-</span> <span class="st">"smoke_ever"</span>
+<span class="no">dom</span> <span class="kw">&lt;-</span> <span class="st">"county"</span>
+<span class="no">fe.disc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"year"</span>,<span class="st">"gender"</span>,<span class="st">"race"</span>,<span class="st">"age"</span>)
+<span class="no">fe.cont</span> <span class="kw">&lt;-</span> <span class="st">"povt_rate"</span>
+
+<span class="co"># hglmbc.fit &lt;- hglmbc(data = eversmoke, resp = "smoke_ever", dom = "county",fe.disc = fe.disc,fe.cont = fe.cont, y.family = "binomial")</span>
+<span class="co"># hglmbc.fit</span></pre></div>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -148,7 +210,16 @@
 </ul>
 </div>
 
-  </div>
+  <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.com/niroshar/hglmbc2"><img src="https://travis-ci.com/niroshar/hglmbc2.svg?branch=master" alt="Travis build status"></a></li>
+<li><a href="https://ci.appveyor.com/project/niroshar/hglmbc2"><img src="https://ci.appveyor.com/api/projects/status/github/niroshar/hglmbc2?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
+<li><a href="https://codecov.io/gh/niroshar/hglmbc2?branch=master"><img src="https://codecov.io/gh/niroshar/hglmbc2/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://github.com/niroshar/hglmbc2/actions"><img src="https://github.com/niroshar/hglmbc2/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+</ul>
+</div>
+</div>
 </div>
 
 
