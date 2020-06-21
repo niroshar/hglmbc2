@@ -31,3 +31,5 @@ Suggests:
     testthat,
     covr,
     shiny
+URL: https://github.com/niroshar/hglmbc2
+BugReports: https://github.com/niroshar/hglmbc2/issues
