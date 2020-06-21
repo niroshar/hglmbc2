@@ -1,0 +1,33 @@
+Package: hglmbc2
+Type: Package
+Title: Small Area Estimation Using Calibrated H-likelihood with Bias Correction for Generalized Class of Distributions
+Version: 0.1.0
+Authors@R: c(
+    person("Nirosha", "Rathnayake", , "niro.uno@gmail.com", role = c("aut", "cre")
+    ),
+    person("Dai (Daisy)", "Hongying", role = "aut"
+    )
+    )
+Maintainer: Nirosha Rathnayake <niro.uno@gmail.com>
+Description: This R package is built to apply h-likelihood approach with bias correction to make inferences in Small Area Estimation.
+    The bias correction approach enhances the accuracy of maximum hierarchical likelihood estimates (MHLEs). 
+    The model parameters are obtained through an iterative approximation.  
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports:
+    ggplot2,
+    dplyr,
+    fastDummies,
+    corpcor,
+    tibble,
+    stringi,
+    Matrix,
+    stats
+RoxygenNote: 7.1.0
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat,
+    covr,
+    shiny
