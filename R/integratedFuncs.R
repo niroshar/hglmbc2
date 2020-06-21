@@ -24,7 +24,7 @@ initPar <- function(data, resp, dom, fe.disc = NULL, fe.cont = NULL, y.family = 
     y.family <- y.family
   }
 
-  cat(paste0("dist. of family = ", y.family, "\n"))
+  # cat(paste0("dist. of family = ", y.family, "\n"))
 
   if(y.family == "binomial"){
     mdlFit <- glm(formula = mformula,family = binomial(link=logit),data=data)
@@ -86,6 +86,7 @@ predsFunc <- function(mformula){
   # preds <- preds1[!preds1 %in% resp]
   # fe.disc0 <-  preds[grepl("^as.factor", preds)==TRUE]   # Disc variables
   preds <- unlist(strsplit(preds0, split = "+", fixed = TRUE))
+  preds <- gsub(" ","",preds)
   fe.disc0 <-  preds[grepl("^as.factor", preds)==TRUE]
   fe.disc0 <- gsub("as.factor\\(","",fe.disc0)
   fe.disc0 <- gsub(")","",fe.disc0)

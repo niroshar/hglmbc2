@@ -1,7 +1,6 @@
 ---
-title: h-likelihood with bias correction in SAE (hglmbc2) vignette
+title:  
 output: github_document
-author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmail.com, https://niroshar.github.io/My-Profile/], Dai (Daisy) Hongying^[University of Nebraska Medical Center, https://www.unmc.edu/publichealth//departments/biostatistics/facultyandstaff/hongying-dai.html]
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -27,7 +26,7 @@ knitr::opts_chunk$set(
 [![R build status](https://github.com/niroshar/hglmbc2/workflows/R-CMD-check/badge.svg)](https://github.com/niroshar/hglmbc2/actions)
 <!-- badges: end -->
 
-The goal of `hglmbc2` is to make inferences in Small Area Estimation based on Hierarchical ($h-$)likelihood approach with bias correction. The model parameters are obtained through an iterative approximation based on Newton Raphson method combined with bias correction of estimates. The bias correction approach enhances the accuracy of maximum hierarchical likelihood estimates (MHLEs). This R package can be used to obtain improved MHLEs for `fixed effects`, `random effects`, and `dispersion parameters` for exponential family distributions with random effect $u\sim N(0, \sigma^2)$.  
+The goal of `hglmbc2` is to make inferences in Small Area Estimation based on Hierarchical $(h-)$likelihood approach with bias correction. The model parameters are obtained through an iterative approximation based on Newton Raphson method combined with bias correction of estimates. The bias correction approach enhances the accuracy of maximum hierarchical likelihood estimates (MHLEs). This R package can be used to obtain improved MHLEs for `fixed effects`, `random effects`, and `dispersion parameters` for exponential family distributions with random effect $u\sim N(0, \sigma^2)$.  
 
 
 ## Installation
@@ -47,21 +46,37 @@ or, you can install the development version of hglmbc2 using [devtools](https://
 
 #### Example: method 1
 
-`Binomial-Normal HGLM` is also known as the `mixed logit` model in GLM family with the binary response variable and the random effect $u\sim N(0,\sigma^2)$. 
+`Binomial-Normal HGLM` is also known as the `mixed logit` model in GLM family with the binary response variable and the random effect $u \sim N(0,\sigma^2)$. 
 
 
 ```{r hBino, echo=TRUE}
 library(hglmbc2)
-## basic example code
+
+# basic example code
 data <- eversmoke
 mformula <- "smoke_ever ~ as.factor(age) + as.factor(gender) + as.factor(race) + as.factor(year) + povt_rate"
 dom <- "county"
 y.family <- "binomial"
 rand.family <- "gaussian"
-## Fit the model
-# hglmbc.fit <- hglmbc(data = eversmoke, mformula, dom = "county", y.family = "binomial")
-# hglmbc.fit$summary
+
+# Fit the model
+hglmbc.fit <- hglmbc(data = eversmoke, mformula, dom = "county", y.family = "binomial")
+
+## MHLEs of fixed effects
+hglmbc.fit$est.fe
+
+
+# The distribution of y|u not defined,
+hglmbc.fit1 <- hglmbc(data = eversmoke, mformula, dom = "county")
+
+# Model fit summary
+hglmbc.fit1$summary
+
 ```
+
+
+
+
 
 
 #### Example: method 2
@@ -74,7 +89,7 @@ dom <- "county"
 fe.disc <- c("year","gender","race","age")
 fe.cont <- "povt_rate"
 
-# hglmbc.fit <- hglmbc(data = eversmoke, resp, dom = "county",fe.disc = fe.disc,fe.cont = fe.cont, y.family = "binomial")
+# hglmbc.fit <- hglmbc(data = eversmoke, resp = "smoke_ever", dom = "county",fe.disc = fe.disc,fe.cont = fe.cont, y.family = "binomial")
 # hglmbc.fit
 ```
 

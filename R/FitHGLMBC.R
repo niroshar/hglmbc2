@@ -89,32 +89,36 @@
 #' y = rpois(N, mu)
 #'
 #' }
-
-hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand.family = "gaussian", resp = NULL, fe.disc = NULL, fe.cont = NULL,tol=1e-05, ...)
+hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand.family = "gaussian", tol=1e-05, ...)
 {
 
   fit.hglmbc <- match.call()
   namedList <- list()
 
+  # print(head(data))
+
   source("R/integratedFuncs.R")
 
-  cat(paste0("y family: ", y.family, "\n"))
+  # cat(paste0("y family: ", y.family, "\n"))
 
   # final_data <- dataIn(data, y, dis_vars, cont_vars, re, ref_grp)
-  # Filter out response variable and random effect
+  # data set and dom need to be required
   if(!exists("data") | is.null(dom)){
     stop("Error! please define the data frame and random effect component.")
   }
 
-  if(is.null(resp) & is.null(dom) & is.null(mformula)){
-    stop("Error! resp & dom or mformula needs to be defined.")
-  }
-
-
   data <- data[order(data[ ,dom]), ]
 
-  # get y, discrete and numeric variables
-  if(is.null(mformula)){
+  # If mformula and dom is defined
+  if(!is.null(mformula) & exists("mformula") & exists("dom")){
+    varOut <- predsFunc(mformula)
+    resp <- as.character(varOut[[1]])
+    fe.disc <- as.vector(varOut[[2]])
+    fe.cont <- as.vector(varOut[[3]])
+  }
+
+  # if mformula is not defined, but resp is defined
+  if(is.null(mformula) & exists("resp") & exists("dom")){
     myformula <- myFormula(data, resp, dom)
     # mformula <- as.formula(myformula)
     varOut <- predsFunc(myformula)
@@ -123,18 +127,10 @@ hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand
     fe.cont <- as.vector(varOut[[3]])
 
   }
-  if(exists("resp") & exists("dom") & is.null(mformula)){
-    myformula <- myFormula(data, resp, dom)
-    mformula <- as.formula(myformula)
+
+  if(is.null(mformula) & !exists("resp")){
+    stop("At least mformula or the response variable (resp) with dom need to be defined!")
   }
-  # else{
-  #   varOut <- predsFunc(mformula)
-  #   resp <- as.character(varOut[[1]])
-  #   fe.disc <- as.vector(varOut[[2]])
-  #   fe.cont <- as.vector(varOut[[3]])
-  # }
-
-
 
   # cov_data <- data[ ,!colnames(data) %in% paste0(y,re)]
   fe.data <- data[ ,colnames(data) %in% c(fe.cont,fe.disc)]
@@ -162,9 +158,9 @@ hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand
 
   resp <- resp
 
-  cat(paste0("resp: ", resp, "\n"))
+  # cat(paste0("resp: ", resp, "\n"))
 
-  cat(paste0("dom: ", dom, "\n"))
+  # cat(paste0("dom: ", dom, "\n"))
 
   ## Call function to obtain initial parameters
   beta0 <- initPar(data, resp, dom)
@@ -176,10 +172,6 @@ hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand
   zeta_new <- rep(1,m)
 
   cnty <- unique(uDom)
-
-
-
-
 
 
 
@@ -367,6 +359,7 @@ hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand
   colnames(est.fe) <- c("Estimate","Std.Error","Z Value","P(>|Z|)")
   rownames(est.fe) <- beta00[ ,1]
 
+  fit.hglmbc$est.fe <- est.fe
   fit.hglmbc$iter <- iter
   fit.hglmbc$est.beta <- est.beta
   fit.hglmbc$re <- est.re
@@ -407,6 +400,7 @@ hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand
 
   return(fit.hglmbc)
 
+  rm(mformula); rm(fe.cont); rm(fe.disc)
   # cat(paste0("Converged in ",iter," iterations with tol = ",delta,". \n \n"))
 
 }
