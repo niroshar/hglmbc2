@@ -10,6 +10,8 @@ Nirosha Rathnayake, Dai (Daisy) Hongying
 
 [![Travis build
 status](https://travis-ci.com/niroshar/hglmbc2.svg?branch=master)](https://travis-ci.com/niroshar/hglmbc2)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/niroshar/hglmbc2?branch=master&svg=true)](https://ci.appveyor.com/project/niroshar/hglmbc2)
 <!-- badges: end -->
 
 The goal of `hglmbc2` is to make inferences in Small Area Estimation
