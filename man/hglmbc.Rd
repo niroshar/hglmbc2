@@ -6,10 +6,10 @@
 \usage{
 hglmbc(
   data,
-  mformula,
+  mformula = NULL,
   dom = NULL,
-  y.family = binomial,
-  rand.family = gaussian,
+  y.family = "binomial",
+  rand.family = "gaussian",
   resp = NULL,
   fe.disc = NULL,
   fe.cont = NULL,
@@ -86,7 +86,7 @@ mformula <- "smoke_ever ~ as.factor(age) + as.factor(gender) + as.factor(race)
 dom <- "county"
 y.family <- "binomial"
 rand.family <- "gaussian"
-hglmbc.fit <- hglmbc(data=eversmoke, mformula, dom = "county", y.family=binomial)
+hglmbc.fit <- hglmbc(data=eversmoke, mformula, dom = "county", y.family="binomial")
 
 # mformula is not defined,
 resp <- "smoke_ever"
@@ -95,7 +95,7 @@ catX <- c("year","gender","race","age")
 contX <- "povt_rate"
 
 hglmbc.fit <- hglmbc(data = eversmoke, resp, dom = "county",fe.disc = catX,
-fe.cont = contX, family = binomial)
+fe.cont = contX, y.family = "binomial")
 
 
 # Poisson-Normal HGLM

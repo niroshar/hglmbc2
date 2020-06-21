@@ -1,13 +1,13 @@
 # Try for different cases
 # beta0 <- initPar(data, resp, dom)
 # beta0 <- initPar(data, resp, dom, fe.disc, fe.cont)
-# beta0 <- initPar(data, resp, dom, fe.disc, fe.cont, y.family = binomial)
+# beta0 <- initPar(data, resp, dom, fe.disc, fe.cont, y.family = "binomial")
 
 initPar <- function(data, resp, dom, fe.disc = NULL, fe.cont = NULL, y.family = NULL, ...){
 
   source("R/myFormula.R")
   myFormula <- myFormula(data, resp, dom)
-  myFormula <- as.formula(myFormula)
+  mformula <- as.formula(myFormula)
 
   # Returns the dist of y if not specified
   if(is.null(y.family)){
@@ -20,13 +20,16 @@ initPar <- function(data, resp, dom, fe.disc = NULL, fe.cont = NULL, y.family = 
     }else{
       stop("Error: Family is not defined !!!")
     }
+  }else{
+    y.family <- y.family
   }
 
+  cat(paste0("dist. of family = ", y.family, "\n"))
 
   if(y.family == "binomial"){
-    mdlFit <- glm(formula = myFormula,family = binomial(link=logit),data=data)
+    mdlFit <- glm(formula = mformula,family = binomial(link=logit),data=data)
   }else if(y.family == "Poisson"){
-    mdlFit <- glm(formula = myFormula,family = poisson(link=log),data=data)
+    mdlFit <- glm(formula = mformula,family = poisson(link=log),data=data)
   }
 
   beta0 <- data.frame(summary(mdlFit)$coefficients[,1])
@@ -71,16 +74,18 @@ bInitOrder <- function(beta0,fe.cont){
 
 
 ## Function to get discrete, numeric and response variable if only mformula is defined.
-# varOut <- predsFunc(mformula)
+# varOut <- predsFunc(mformula=myformula)
 predsFunc <- function(mformula){
-  resp <- unlist(strsplit(mformula, split = " ~ ", fixed = TRUE))[1] # as.character(as.character(mformula)[2]) # extract response variable
+  # resp <- as.character(as.character(mformula)[2])
+  mformula <- as.character(mformula)
+  resp <- unlist(strsplit(mformula, split = "~"))[1] #  # extract response variable , fixed = TRUE
   resp <- gsub(" ","",resp)    # remove space in response variable
-
-  preds0 <- unlist(strsplit(mformula, split = " ~ ", fixed = TRUE))[2] # as.character(mformula)[3]   #
+  # preds0 <- as.character(mformula)[3]
+  preds0 <- unlist(strsplit(mformula, split = "~", fixed = TRUE))[2]
   # preds1 <- as.vector(unlist(strsplit(preds0, split = " ~ ", fixed = TRUE)))
   # preds <- preds1[!preds1 %in% resp]
   # fe.disc0 <-  preds[grepl("^as.factor", preds)==TRUE]   # Disc variables
-  preds <- unlist(strsplit(preds0, split = " + ", fixed = TRUE))
+  preds <- unlist(strsplit(preds0, split = "+", fixed = TRUE))
   fe.disc0 <-  preds[grepl("^as.factor", preds)==TRUE]
   fe.disc0 <- gsub("as.factor\\(","",fe.disc0)
   fe.disc0 <- gsub(")","",fe.disc0)

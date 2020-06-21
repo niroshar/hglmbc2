@@ -66,7 +66,7 @@
 #' dom <- "county"
 #' y.family <- "binomial"
 #' rand.family <- "gaussian"
-#' hglmbc.fit <- hglmbc(data=eversmoke, mformula, dom = "county", y.family=binomial)
+#' hglmbc.fit <- hglmbc(data=eversmoke, mformula, dom = "county", y.family="binomial")
 #'
 #' # mformula is not defined,
 #' resp <- "smoke_ever"
@@ -75,7 +75,7 @@
 #' contX <- "povt_rate"
 #'
 #' hglmbc.fit <- hglmbc(data = eversmoke, resp, dom = "county",fe.disc = catX,
-#' fe.cont = contX, family = binomial)
+#' fe.cont = contX, y.family = "binomial")
 #'
 #'
 #' # Poisson-Normal HGLM
@@ -90,10 +90,7 @@
 #'
 #' }
 
-hglmbc <- function(data, mformula, dom = NULL,
-                   y.family = binomial, rand.family = gaussian,
-                   resp = NULL, fe.disc = NULL, fe.cont = NULL,
-                   tol=1e-05, ...)
+hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand.family = "gaussian", resp = NULL, fe.disc = NULL, fe.cont = NULL,tol=1e-05, ...)
 {
 
   fit.hglmbc <- match.call()
@@ -101,6 +98,7 @@ hglmbc <- function(data, mformula, dom = NULL,
 
   source("R/integratedFuncs.R")
 
+  cat(paste0("y family: ", y.family, "\n"))
 
   # final_data <- dataIn(data, y, dis_vars, cont_vars, re, ref_grp)
   # Filter out response variable and random effect
@@ -108,19 +106,33 @@ hglmbc <- function(data, mformula, dom = NULL,
     stop("Error! please define the data frame and random effect component.")
   }
 
+  if(is.null(resp) & is.null(dom) & is.null(mformula)){
+    stop("Error! resp & dom or mformula needs to be defined.")
+  }
+
+
   data <- data[order(data[ ,dom]), ]
 
   # get y, discrete and numeric variables
-  if(exists("mformula")){
-    varOut <- predsFunc(mformula)
+  if(is.null(mformula)){
+    myformula <- myFormula(data, resp, dom)
+    # mformula <- as.formula(myformula)
+    varOut <- predsFunc(myformula)
     resp <- as.character(varOut[[1]])
     fe.disc <- as.vector(varOut[[2]])
     fe.cont <- as.vector(varOut[[3]])
-  }
 
-  if(!exists("mformula")){
-    myformula <- myFormula(data, resp, dom)
   }
+  if(exists("resp") & exists("dom") & is.null(mformula)){
+    myformula <- myFormula(data, resp, dom)
+    mformula <- as.formula(myformula)
+  }
+  # else{
+  #   varOut <- predsFunc(mformula)
+  #   resp <- as.character(varOut[[1]])
+  #   fe.disc <- as.vector(varOut[[2]])
+  #   fe.cont <- as.vector(varOut[[3]])
+  # }
 
 
 
@@ -147,6 +159,12 @@ hglmbc <- function(data, mformula, dom = NULL,
   N <- nrow(data)
   p <- ncol(X)
   Z <- model.matrix(~0+as.factor(data[ ,dom]))
+
+  resp <- resp
+
+  cat(paste0("resp: ", resp, "\n"))
+
+  cat(paste0("dom: ", dom, "\n"))
 
   ## Call function to obtain initial parameters
   beta0 <- initPar(data, resp, dom)

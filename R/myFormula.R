@@ -107,7 +107,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
         contFomular <- paste0(discFomular,temp)
       }
       IntParFomular <- contFomular
-      IntParFomular
+
 
     }else if(exists("fe.cont") & !exists("fe.disc")){
       fe.disc <- c(names(which(lapply(dataF, is.character)==TRUE)))
@@ -123,7 +123,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
         contFomular <- paste0(discFomular,temp)
       }
       IntParFomular <- contFomular
-      IntParFomular
+
     }else{
       fe.disc <- fe.disc
       fe.cont <- fe.cont
@@ -140,7 +140,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
         contFomular <- paste0(discFomular,temp)
       }
       IntParFomular <- contFomular
-      IntParFomular
+
     }
 
     if(sapply(strsplit(as.character(IntParFomular), ""), tail, 1)=="+"){
@@ -148,7 +148,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
       IntParFomular <- stri_replace_last(IntParFomular, fixed = "+", "")
     }
 
-    myFormula <- as.formula(IntParFomular)
+    mformula <- IntParFomular
 
 
   }else{
@@ -156,7 +156,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
     stop("Error! No other variables exist except response response variable and random effect")
 
   }
-  return(myFormula)
+  return(mformula)
 
 }
 
