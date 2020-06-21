@@ -1,6 +1,6 @@
 ---
 title: "hglmbc2 Documentation"
-author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmail.com, https://niroshar.github.io/My-Profile/], Dai (Daisy) Hongying^[University of Nebraska Medical Center, https://www.unmc.edu/publichealth//departments/biostatistics/facultyandstaff/hongying-dai.html]
+author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmail.com, https://niroshar.github.io/My-Profile/]
 # output: rmarkdown::html_document
 output:
   html_document:

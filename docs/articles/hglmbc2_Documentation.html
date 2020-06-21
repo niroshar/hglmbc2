@@ -94,10 +94,13 @@
 
     
     
-<div id="introduction" class="section level3">
-<h3 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h3>
-<p>The <code>hglmbc2</code> package vignette illustrates a series of applicaitons that may be interest in Small Area Estimation (SAE) based on the calibrated <span class="math inline">\(h-\)</span>likelihood approach. In SAE a random effect or the laetent variable <span class="math inline">\(u_i\)</span> described the between area estimation. The proposed calibrated hierarchical <span class="math inline">\(h-\)</span>likelihood in SAE obtain SAE through hierarchical estimation of <code>fixed effects</code> and <code>random effects</code> with bias correction using Regression Calibration Methodd (RCM). This apparoach allows the conditional distribution of y given random effect<span class="math inline">\((u)\)</span> from any exponential family distributions (GLM family) and the random effect <span class="math inline">\(u \sim N(0,\sigma^2)\)</span> which is called the <em>calibrated <span class="math inline">\(h-\)</span> likelihood with bias correction</em>. This <code>hglmbc2</code> is mainly built to fit exponential family distributions (GLM family) <span class="citation">[-@mcculloch2005generalized]</span> via <span class="math inline">\(h-\)</span>likelihood with <span class="math inline">\(Bias-Correction\)</span> in SAE. This package also can be applied to <em>Hierarchical Generalized Linear Models (HGLM)</em> where <span class="math inline">\(y|u\)</span> from the exponential family distribution and <span class="math inline">\(u\)</span> may also be from the exponential family distribution, <em>without bias correction approach</em> <span class="citation">[@lee1996hierarchical; @lee2006generalized]</span>. The CPH with bias correction approach is described in detail in the PhD dissetation report, <a href="PhDDissertation.pdf">(See the article)</a>. The <span class="math inline">\(h-\)</span>likelihood is the sum of conditional log likelihood of <span class="math inline">\(y|u\)</span> and the log likelihood of <span class="math inline">\(u\)</span>,</p>
+<div id="hierarhical-h--likelihood-with-bias-correction-in-small-area-estimation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#hierarhical-h--likelihood-with-bias-correction-in-small-area-estimation" class="anchor"></a>Hierarhical (h-) likelihood with bias correction in small area estimation</h1>
+<div id="introduction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>Introduction</h2>
+<p>The <code>hglmbc2</code> package vignette illustrates a series of applicaitons that may be interest in Small Area Estimation (SAE) based on the calibrated <span class="math inline">\(h-\)</span>likelihood approach. In SAE a random effect or the laetent variable <span class="math inline">\(u_i\)</span> described the between area estimation. The proposed calibrated hierarchical <span class="math inline">\(h-\)</span>likelihood in SAE obtain SAE through hierarchical estimation of <code>fixed effects</code> and <code>random effects</code> with bias correction using Regression Calibration Methodd (RCM). This apparoach allows the conditional distribution of y given random effect<span class="math inline">\((u)\)</span> from any exponential family distributions (GLM family) and the random effect <span class="math inline">\(u \sim N(0,\sigma^2)\)</span> which is called the <em>calibrated <span class="math inline">\(h-\)</span> likelihood with bias correction</em>. This <code>hglmbc2</code> is mainly built to fit exponential family distributions (GLM family) <span class="citation">(2005)</span> via <span class="math inline">\(h-\)</span>likelihood with <span class="math inline">\(Bias-Correction\)</span> in SAE. This package also can be applied to <em>Hierarchical Generalized Linear Models (HGLM)</em> where <span class="math inline">\(y|u\)</span> from the exponential family distribution and <span class="math inline">\(u\)</span> may also be from the exponential family distribution, <em>without bias correction approach</em> <span class="citation">(Lee and Nelder 1996; Lee, Nelder, and Pawitan 2006)</span>. The CPH with bias correction approach is described in detail in the PhD dissetation report, <a href="https://github.com/niroshar/PhD2020/blob/master/Dissertation/PhDDissertation.pdf">(See the dissertation)</a>. The <span class="math inline">\(h-\)</span>likelihood is the sum of conditional log likelihood of <span class="math inline">\(y|u\)</span> and the log likelihood of <span class="math inline">\(u\)</span>,</p>
 <p><span class="math display">\[
 h = \sum_{i=1}^m\sum_{j=1}^{n_i} \ell_{y_{ij}|u_i} + \sum_{i=1}^m \ell_{u_i},
 \]</span></p>
@@ -107,6 +110,13 @@ h = \sum_{i=1}^m\sum_{j=1}^{n_i} \ell_{y_{ij}|u_i} + \sum_{i=1}^m \ell_{u_i},
 <p><span class="math display">\[
 h = \sum_{i=1}^m\sum_{j=1}^{n_i} (y_{ij}(x_{ij}^T\beta +u_i) - log(1+exp(x_{ij}^T\beta +u_i))) - \sum_{i=1}^m \frac{m}{2}log(\sigma^2) -\frac{1}{2\sigma^2}\sum_{i=1}^mu_i^2-\frac{m}{2}log(2\pi)   
 \]</span></p>
+</div>
+<div id="parameter-estimation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parameter-estimation" class="anchor"></a>Parameter Estimation</h2>
+<div id="mhle-of-fixed-effects-and-random-effects" class="section level3">
+<h3 class="hasAnchor">
+<a href="#mhle-of-fixed-effects-and-random-effects" class="anchor"></a>MHLE of fixed effects and random effects</h3>
 <p>The estimated model parameters through the proposed method are called the maximum hierarchical likelihood estimators (MHLEs). Let <span class="math inline">\(\tau=(\beta,u)\)</span> be the unknown parameters. Given the variance parameter <span class="math inline">\(\theta=(\theta_1,…,\theta_q )^T=\sigma^2\)</span>, MHLE of <span class="math inline">\(\hat \tau=(\hat \beta, \hat u)\)</span> are obtained by solving the score function <span class="math inline">\(\partial h/\partial \tau = 0\)</span>. When the solution does not have a closed form, the MHLE for <span class="math inline">\((\beta,u)\)</span> are obtained using <em>Newton-Raphson</em> approximation through an iterative procedure using equation. Unlike in the standard linear mixed model, the model (1) does not have a closed-form for the joint log likelihood, hence it is very challenging to estimate BLUP or EBLUP of model parameters. In such situations, <span class="math inline">\(h-\)</span>likelihood plays a major role in simplifying the parameter estimation procedure. Mostly, the MHLEs are often obtained via numerical approximation methods due to intractable integrals in the joint log-likelihood function.</p>
 <p>The score function <span class="math inline">\(\mathcal{S}\)</span> and the hessian matrix J of the Newton Raphson iterative algorithm shown below,</p>
 <p><span class="math display">\[
@@ -123,9 +133,10 @@ h = \sum_{i=1}^m\sum_{j=1}^{n_i} (y_{ij}(x_{ij}^T\beta +u_i) - log(1+exp(x_{ij}^
 \end{array}\right)
 \]</span></p>
 <p>The estimated <span class="math inline">\(\pmb{\mathcal{J}}\)</span> is the asymptotic variance-covariance matrix of <span class="math inline">\(\pmb{\hat \beta}\)</span> and <span class="math inline">\(\pmb{\hat u}\)</span>. The variance-covariance matrix for variance component <span class="math inline">\(\pmb{\hat \theta}\)</span> will be estimated by MHLE of <span class="math inline">\(\pmb{\theta}\)</span> using <span class="math inline">\(h_A\)</span> through an iterative procedure.</p>
-<div id="bias-correction-of-random-effects" class="section level4">
-<h4 class="hasAnchor">
-<a href="#bias-correction-of-random-effects" class="anchor"></a>Bias Correction of Random Effects</h4>
+</div>
+<div id="bias-correction-of-random-effects" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bias-correction-of-random-effects" class="anchor"></a>Bias Correction of Random Effects</h3>
 <p>we consider bias correction of random effects within the parameter estimation process to mitigate the biasness that could occur due to the use of current estimates of random effects <span class="math inline">\((\pmb{\hat u}^{(t)})\)</span> to obtain estimations for variance parameter <span class="math inline">\(\theta(\sigma^2)\)</span>. The MHLE of <span class="math inline">\((\pmb{\hat u})\)</span> will lead to bias and inconsistent estimations of regression coefficients and parameters in the random effects, such as variance parameters. We apply the <em>Regression Calibration Method (RCM)</em> which corrects the biasness in the estimators introducing a correction factor to adjust the current estimators based on the variance of the previous and current estimators of <span class="math inline">\(\pmb{u}\)</span>. Under RCM, the current estimate of <span class="math inline">\(\pmb{u}, \hat{\pmb{u}}\)</span> is replaced by the expectation of conditional expectation of <span class="math inline">\(\pmb{u}|\hat{\pmb{u}}\)</span>. Given <span class="math inline">\(\pmb{u} \sim N(0,\sigma^2)\)</span>,</p>
 <p><span class="math display">\[
 E[\pmb{u}|\hat{\pmb{u}}] = \pmb{\zeta}\hat{\pmb{u}}=\frac{\sigma^2}{\sigma^2+\pmb{\gamma}^2} \hat{\pmb{u}},
@@ -135,10 +146,26 @@ E[exp(\pmb{u})|\hat{\pmb{u}}] = exp \biggl( \pmb{\zeta}\hat{\pmb{u}}+\frac{\sigm
 \]</span></p>
 <p>where <span class="math inline">\(\pmb{\zeta}=\sigma^2/(\sigma^2+\pmb{\gamma}^2)\)</span> is the correction factor, and <span class="math inline">\(\pmb{\gamma}=diag(\Sigma_{\hat{\pmb{u}}}),\Sigma_{\hat{\pmb{u}}}=(\pmb{\mathcal{J}}^{-1})_{22}\)</span> is a vector of <span class="math inline">\(m\)</span> elements obatined from the variance-covariance matrix of <span class="math inline">\(\hat{\pmb{u}}\)</span>. The dispersion parameters are obained after correcting to the current <span class="math inline">\(\hat{\pmb{u}}\)</span>. The dispersion parameters will be estimated iteratively based on the adjusted <span class="math inline">\(h-\)</span>likelihood function.</p>
 </div>
-</div>
-<div id="proposed-h-likelihood-with-bias-correction-in-small-area-estimation" class="section level3">
+<div id="mhles-of-dispersion-parameters" class="section level3">
 <h3 class="hasAnchor">
-<a href="#proposed-h-likelihood-with-bias-correction-in-small-area-estimation" class="anchor"></a>Proposed h-likelihood with bias correction in small area estimation</h3>
+<a href="#mhles-of-dispersion-parameters" class="anchor"></a>MHLEs of dispersion parameters</h3>
+</div>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
+<div id="refs" class="references">
+<div id="ref-lee1996hierarchical">
+<p>Lee, Youngjo, and John A Nelder. 1996. “Hierarchical Generalized Linear Models.” <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 58 (4): 619–56.</p>
+</div>
+<div id="ref-lee2006generalized">
+<p>Lee, Youngjo, John A Nelder, and Yudi Pawitan. 2006. <em>Generalized Linear Models with Random Effects: Unified Analysis via H-Likelihood</em>. Chapman; Hall/CRC.</p>
+</div>
+<div id="ref-mcculloch2005generalized">
+<p>McCulloch, Charles E, and John M Neuhaus. 2005. “Generalized Linear Mixed Models.” <em>Encyclopedia of Biostatistics</em> 4.</p>
+</div>
+</div>
 </div>
 <div class="footnotes">
 <hr>
@@ -151,7 +178,9 @@ E[exp(\pmb{u})|\hat{\pmb{u}}] = exp \biggl( \pmb{\zeta}\hat{\pmb{u}}+\frac{\sigm
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
