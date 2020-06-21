@@ -1,7 +1,15 @@
 ---
 title: "Calibrated h-likelihood with bias correction in SAE (hglmbc) vignette"
 author: Nirosha Rathnayake^[University of Nebraska Medical Center, niro.uno@gmail.com, https://niroshar.github.io/My-Profile/], Dai (Daisy) Hongying^[University of Nebraska Medical Center, https://www.unmc.edu/publichealth//departments/biostatistics/facultyandstaff/hongying-dai.html]
-output: rmarkdown::pdf_document
+# output: rmarkdown::pdf_document
+output:
+  pdf_document:
+    fig_caption: yes
+    toc: yes
+    toc_depth: 3
+    number_sections: true
+    citation_package: biblatex
+bibliography: refs.bib
 vignette: >
   %\VignetteIndexEntry{hglmbc2_vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -18,3 +26,23 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(hglmbc2)
 ```
+
+
+### Introduction
+
+The `hglmbc` package vignette illustrates a series of applicaitons that may be interest in Small Area Estimation (SAE) based on the calibrated $h-$likelihood approach. In SAE a random effect or the laetent variable $u_i$  described the between area estimation. The proposed calibrated hierarchical $h-$likelihood in SAE obtain SAE through hierarchical estimation of `fixed effects` and `random effects` with bias correction using Regression Calibration Methodd (RCM). This apparoach allows the conditional distribution of y given random effect$(u)$ from any exponential family distributions (GLM family) and the random effect $u \sim N(0,\sigma^2)$ [-@mcculloch2005generalized]. This approach is called the *calibrated $h-$ likelihood with bias correction*. This `hglmbc` is mainly built to fit exponential family distributions (GLM family) via $h-$likelihood with $Bias-Correction$ in SAE. This package also can be applied to *Hierarchical Generalized Linear Models (HGLM)* where $y|u$ from the exponential family distribution and $u$ may also be from the  exponential family distribution, *without bias correction approach* [@lee1996hierarchical; @lee2006generalized]. The CPH with bias correction approach is described in detail in the PhD dissetation report, <a href=PhDDissertation.pdf>(See the article)</a>. The $h-$likelihood is the sum of conditional log likelihood of $y|u$ and the log likelihood of $u$,  
+
+$$
+h = \sum_{i=1}^m\sum_{j=1}^{n_i} \ell_{y_{ij}|u_i} + \sum_{i=1}^m \ell_{u_i},
+$$
+
+
+- The $h-$likelihood for the Binomial-Normal HGLM (Mixed Logit Model) can be written as
+
+$$
+h = \sum_{i=1}^m\sum_{j=1}^{n_i} (y_{ij}(x_{ij}^T\beta +u_i) - log(1+exp(x_{ij}^T\beta +u_i))) - \sum_{i=1}^m \frac{m}{2}log(\sigma^2) -\frac{1}{2\sigma^2}\sum_{i=1}^mu_i^2-\frac{m}{2}log(2\pi)   
+$$
+
+The estimated model parameters through the proposed method are called the maximum hierarchical likelihood estimators (MHLEs). Let $\tau=(\beta,u)$  be the unknown parameters. Given the variance parameter $\theta=(\theta_1,…,\theta_q )^T=\sigma^2$,  MHLE of $\hat \tau=(\hat \beta, \hat u)$ are obtained by solving the score function $\partial h/\partial \tau = 0$. When the solution does not have a closed form, the MHLE for $(\beta,u)$ are obtained using *Newton-Raphson* approximation through an iterative procedure using equation. Unlike in the standard linear mixed model, the model (1) does not have a closed-form for the joint log likelihood, hence it is very challenging to estimate BLUP or EBLUP of model parameters. In such situations, $h-$likelihood plays a major role in simplifying the parameter estimation procedure. Mostly, the MHLEs are often obtained via numerical approximation methods due to intractable integrals in the joint log-likelihood function.  
+
+The score function $\mathcal{S}$ and the hessian matrix J of the Newton Raphson iterative algorithm shown below, 
