@@ -7,7 +7,7 @@
 getVars(mformula)
 }
 \arguments{
-\item{mformula}{}
+\item{mformula}{model formula}
 }
 \value{
 

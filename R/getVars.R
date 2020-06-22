@@ -1,7 +1,7 @@
 
 #' Function to get discrete, numeric and response variables if only the model fit formula is defined.
 #'
-#' @param mformula
+#' @param mformula model formula
 #'
 #' @return
 #' @export
