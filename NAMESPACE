@@ -2,6 +2,7 @@
 
 export(DesignM)
 export(csv_read)
+export(getVars)
 export(hglmbc)
 export(initPar)
 export(myFormula)

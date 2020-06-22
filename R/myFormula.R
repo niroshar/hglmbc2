@@ -87,7 +87,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
 
       if(length(fe.cont) != 0){
         for(j in 1:length(fe.cont)){
-          temp <- paste0(fe.cont[j])
+          temp <- paste0(fe.cont[j],"+")  # paste0(fe.cont[j])
           discFomular <- paste0(discFomular,temp)
         }
       }
@@ -108,7 +108,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
 
       if(length(fe.cont) != 0){
         for(j in 1:length(fe.cont)){
-          temp <- paste0(fe.cont[j])
+          temp <- paste0(fe.cont[j],"+")
           discFomular <- paste0(discFomular,temp)
         }
       }
@@ -129,7 +129,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
 
 
       for(j in 1:length(fe.cont)){
-        temp <- paste0(fe.cont[j])
+        temp <- paste0(fe.cont[j],"+")
         discFomular <- paste0(discFomular,temp)
       }
       IntParFomular <- discFomular
@@ -146,7 +146,7 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
       }
 
       for(j in 1:length(fe.cont)){
-        temp <- paste0(fe.cont[j])
+        temp <- paste0(fe.cont[j],"+")
         contFomular <- paste0(discFomular,temp)
       }
       IntParFomular <- contFomular
