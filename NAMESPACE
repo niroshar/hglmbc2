@@ -3,6 +3,7 @@
 export(DesignM)
 export(csv_read)
 export(hglmbc)
+export(initPar)
 export(myFormula)
 import(dplyr)
 import(fastDummies)

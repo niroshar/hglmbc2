@@ -5,6 +5,10 @@
 
 initPar <- function(data, resp, dom, fe.disc = NULL, fe.cont = NULL, y.family = NULL, ...){
 
+  if(is.factor(temp_data[ ,dom])){
+    temp_data[ ,dom] <- as.character(temp_data[ ,dom])
+  }
+
   source("R/myFormula.R")
   myFormula <- myFormula(data, resp, dom)
   mformula <- as.formula(myFormula)
@@ -30,6 +34,8 @@ initPar <- function(data, resp, dom, fe.disc = NULL, fe.cont = NULL, y.family = 
     mdlFit <- glm(formula = mformula,family = binomial(link=logit),data=data)
   }else if(y.family == "Poisson"){
     mdlFit <- glm(formula = mformula,family = poisson(link=log),data=data)
+  }else if(y.family == "gaussian"){
+    mdlFit <- glm(formula = myFormula,family = gaussian(link="identity"),data=data)
   }
 
   beta0 <- data.frame(summary(mdlFit)$coefficients[,1])

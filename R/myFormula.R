@@ -78,17 +78,21 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
       # print(fe.disc)
 
       discFomular <- IntParFomular0
-      for(i in 1:length(fe.disc)){
-        temp <- paste0("as.factor(",fe.disc[i],")+")
-        discFomular <- paste0(discFomular,temp)
+      if(length(fe.disc)!= 0){
+        for(i in 1:length(fe.disc)){
+          temp <- paste0("as.factor(",fe.disc[i],")+")
+          discFomular <- paste0(discFomular,temp)
+        }
       }
 
-
-      for(j in 1:length(fe.cont)){
-        temp <- paste0(fe.cont[j])
-        contFomular <- paste0(discFomular,temp)
+      if(length(fe.cont) != 0){
+        for(j in 1:length(fe.cont)){
+          temp <- paste0(fe.cont[j])
+          discFomular <- paste0(discFomular,temp)
+        }
       }
-      IntParFomular <- contFomular
+
+      IntParFomular <- discFomular
       # IntParFomular
       # cat("\nIntParFomular= ", IntParFomular)
 
@@ -102,27 +106,33 @@ myFormula <-  function(data,resp=NULL,dom=NULL, ...){
         discFomular <- paste0(discFomular,temp)
       }
 
-      for(j in 1:length(fe.cont)){
-        temp <- paste0(fe.cont[j])
-        contFomular <- paste0(discFomular,temp)
+      if(length(fe.cont) != 0){
+        for(j in 1:length(fe.cont)){
+          temp <- paste0(fe.cont[j])
+          discFomular <- paste0(discFomular,temp)
+        }
       }
-      IntParFomular <- contFomular
+
+      IntParFomular <- discFomular
 
 
     }else if(exists("fe.cont") & !exists("fe.disc")){
       fe.disc <- c(names(which(lapply(dataF, is.character)==TRUE)))
 
       discFomular <- IntParFomular0
-      for(i in 1:length(fe.disc)){
-        temp <- paste0("as.factor(",fe.disc[i],")+")
-        discFomular <- paste0(discFomular,temp)
+      if(length(fe.disc) != 0){
+        for(i in 1:length(fe.disc)){
+          temp <- paste0("as.factor(",fe.disc[i],")+")
+          discFomular <- paste0(discFomular,temp)
+        }
       }
+
 
       for(j in 1:length(fe.cont)){
         temp <- paste0(fe.cont[j])
-        contFomular <- paste0(discFomular,temp)
+        discFomular <- paste0(discFomular,temp)
       }
-      IntParFomular <- contFomular
+      IntParFomular <- discFomular
 
     }else{
       fe.disc <- fe.disc
