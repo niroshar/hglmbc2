@@ -6,6 +6,12 @@ Authors@R: c(
     person("Nirosha", "Rathnayake", , "niro.uno@gmail.com", role = c("aut", "cre")
     ),
     person("Dai (Daisy)", "Hongying", role = "aut"
+    ),
+    person("Jane", "Meza", role = "aut"
+    ),
+    person("Kendra", "Schmid", role = "aut"
+    ),
+    person("Steven", "From", role = "aut"
     )
     )
 Maintainer: Nirosha Rathnayake <niro.uno@gmail.com>
