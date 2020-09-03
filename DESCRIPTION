@@ -30,14 +30,16 @@ Imports:
     stringi,
     Matrix,
     stats,
-    readr
+    readr,
+    tidyselect
 RoxygenNote: 7.1.0
 Suggests: 
     knitr,
     rmarkdown,
     testthat,
     covr,
-    shiny
+    shiny,
+    nlme
 URL: https://github.com/niroshar/hglmbc2
 BugReports: https://github.com/niroshar/hglmbc2/issues
 VignetteBuilder: knitr

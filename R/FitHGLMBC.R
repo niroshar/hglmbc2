@@ -402,5 +402,3 @@ hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand
 
 }
 
-
-
