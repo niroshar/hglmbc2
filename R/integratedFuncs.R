@@ -5,8 +5,8 @@
 
 initPar <- function(data, resp, dom, fe.disc = NULL, fe.cont = NULL, y.family = NULL, ...){
 
-  if(is.factor(temp_data[ ,dom])){
-    temp_data[ ,dom] <- as.character(temp_data[ ,dom])
+  if(is.factor(data[ ,dom])){
+    data[ ,dom] <- as.character(data[ ,dom])
   }
 
   source("R/myFormula.R")

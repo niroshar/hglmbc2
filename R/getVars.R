@@ -1,33 +1,37 @@
-
-#' Function to get discrete, numeric and response variables if only the model fit formula is defined.
+#' Extract model variables from formula.
 #'
-#' @param mformula model formula
+#' @description \code{myFormula} outputs the model formula based on discrete variables and continuous variables.
 #'
-#' @return
+#' @param mformula the model formula.
+#'
+#'
+#' @return Returns a list with y, discrete variables, and continuous variables.
+#'
+#' @importFrom tidyselect starts_with
+#' @importFrom tidyselect vars_select
+#' @importFrom nlme splitFormula
+#'
+#' @seealso \code{\link{as.formula}}
+#'
 #' @export
 #'
 #' @examples
 # myformula <- "smoke_ever ~ as.factor(age) + as.factor(gender) + as.factor(race) + as.factor(year) + povt_rate"
-# varOut <- predsFunc(mformula=myformula)
-getVars <- function(mformula){
-  # resp <- as.character(as.character(mformula)[2])
-  mformula <- as.character(mformula)
-  resp <- unlist(strsplit(mformula, split = "~"))[1] #  # extract response variable , fixed = TRUE
-  resp <- gsub(" ","",resp)    # remove space in response variable
-  # preds0 <- as.character(mformula)[3]
-  preds0 <- unlist(strsplit(mformula, split = "~", fixed = TRUE))[2]
-  # preds1 <- as.vector(unlist(strsplit(preds0, split = " ~ ", fixed = TRUE)))
-  # preds <- preds1[!preds1 %in% resp]
-  # fe.disc0 <-  preds[grepl("^as.factor", preds)==TRUE]   # Disc variables
-  preds <- unlist(strsplit(preds0, split = "+", fixed = TRUE))
-  preds <- gsub(" ","",preds)
-  fe.disc0 <-  preds[grepl("^as.factor", preds)==TRUE]
-  fe.disc0 <- gsub("as.factor\\(","",fe.disc0)
-  fe.disc0 <- gsub(")","",fe.disc0)
-  fe.disc <- as.vector(fe.disc0)
+# varOut <- getVars(mformula=myformula)
+getVars <- function(mformula = NULL)
+{
+  if(!is.null(mformula)){
+    mform <- as.formula(mformula)
+    y_var <- as.character(gsub("\\~.*", "", mform)[2])
+    # y_var <- gsub(" ", "",y_var)
+    mform <- as.character(unlist(splitFormula(mform, sep = "+")))
+    mform <- as.character(gsub("~", "", mform))
+    x_disc <- as.vector(vars_select(mform, starts_with("as.factor")))
+    x_cont <- mform[!mform %in% x_disc]
+    x_disc <- gsub("as.factor\\(","",x_disc)
+    x_disc <- as.vector(gsub("\\)","",x_disc))
 
-  fe.cont <- preds[grepl("^as.factor", preds)==FALSE]   # numeric variables
-
-  varOut <- list(resp, fe.disc, fe.cont)
-  return(varOut)
+    varOut <- list(y_var,x_disc,x_cont)
+    return(varOut)
+  }
 }

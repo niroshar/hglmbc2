@@ -10,6 +10,10 @@
 #' @param ... other parameters.
 #'
 #' @return
+#'
+#' @importFrom stringi stri_replace_last
+#'
+#'
 #' @export
 #'
 #' @examples

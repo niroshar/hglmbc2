@@ -2,16 +2,19 @@
 % Please edit documentation in R/getVars.R
 \name{getVars}
 \alias{getVars}
-\title{Function to get discrete, numeric and response variables if only the model fit formula is defined.}
+\title{Extract model variables from formula.}
 \usage{
-getVars(mformula)
+getVars(mformula = NULL)
 }
 \arguments{
-\item{mformula}{model formula}
+\item{mformula}{the model formula.}
 }
 \value{
-
+Returns a list with y, discrete variables, and continuous variables.
 }
 \description{
-Function to get discrete, numeric and response variables if only the model fit formula is defined.
+\code{myFormula} outputs the model formula based on discrete variables and continuous variables.
+}
+\seealso{
+\code{\link{as.formula}}
 }

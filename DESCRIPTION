@@ -31,15 +31,15 @@ Imports:
     Matrix,
     stats,
     readr,
-    tidyselect
+    tidyselect,
+    nlme
 RoxygenNote: 7.1.0
 Suggests: 
     knitr,
     rmarkdown,
     testthat,
     covr,
-    shiny,
-    nlme
+    shiny
 URL: https://github.com/niroshar/hglmbc2
 BugReports: https://github.com/niroshar/hglmbc2/issues
 VignetteBuilder: knitr

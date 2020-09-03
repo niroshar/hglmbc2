@@ -108,7 +108,7 @@ hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand
 
   # If mformula and dom is defined
   if(!is.null(mformula) & exists("mformula") & exists("dom")){
-    varOut <- predsFunc(mformula)
+    varOut <- getVars(mformula)
     resp <- as.character(varOut[[1]])
     fe.disc <- as.vector(varOut[[2]])
     fe.cont <- as.vector(varOut[[3]])
@@ -118,7 +118,7 @@ hglmbc <- function(data, mformula = NULL, dom = NULL, y.family = "binomial",rand
   if(is.null(mformula) & exists("resp") & exists("dom")){
     myformula <- myFormula(data, resp, dom)
     # mformula <- as.formula(myformula)
-    varOut <- predsFunc(myformula)
+    varOut <- getVars(myformula)
     resp <- as.character(varOut[[1]])
     fe.disc <- as.vector(varOut[[2]])
     fe.cont <- as.vector(varOut[[3]])

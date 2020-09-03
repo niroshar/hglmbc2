@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function to get discrete, numeric and response variables if only the model fit formula is defined. — getVars • hglmbc2</title>
+<title>Extract model variables from formula. — getVars • hglmbc2</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Function to get discrete, numeric and response variables if only the model fit formula is defined. — getVars" />
-<meta property="og:description" content="Function to get discrete, numeric and response variables if only the model fit formula is defined." />
+<meta property="og:title" content="Extract model variables from formula. — getVars" />
+<meta property="og:description" content="myFormula outputs the model formula based on discrete variables and continuous variables." />
 
 
 
@@ -123,31 +123,32 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function to get discrete, numeric and response variables if only the model fit formula is defined.</h1>
+    <h1>Extract model variables from formula.</h1>
     <small class="dont-index">Source: <a href='https://github.com/niroshar/hglmbc2/blob/master/R/getVars.R'><code>R/getVars.R</code></a></small>
     <div class="hidden name"><code>getVars.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Function to get discrete, numeric and response variables if only the model fit formula is defined.</p>
+    <p><code>myFormula</code> outputs the model formula based on discrete variables and continuous variables.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getVars</span>(<span class='no'>mformula</span>)</pre>
+    <pre class="usage"><span class='fu'>getVars</span>(<span class='kw'>mformula</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mformula</th>
-      <td><p>model formula</p></td>
+      <td><p>the model formula.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
+    <p>Returns a list with y, discrete variables, and continuous variables.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/formula.html'>as.formula</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -160,7 +161,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Nirosha Rathnayake, Dai (Daisy) Hongying.</p>
+  <p>Developed by Nirosha Rathnayake, Dai (Daisy) Hongying, Jane Meza, Kendra Schmid, Steven From.</p>
 </div>
 
 <div class="pkgdown">
