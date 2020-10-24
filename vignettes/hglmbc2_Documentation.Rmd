@@ -87,7 +87,7 @@ The dispersion parameters are obained after correcting to the current $\hat{\pmb
 
 ### MHLEs of dispersion parameters
 
-The adjusted $h-$likelihood 
+The maximum hierarchical likelihood estimate (MHLE) is obtained using the adjusted $h-$likelihood. 
 
 
 # References
